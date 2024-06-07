@@ -1,0 +1,68 @@
+[package]
+name = "bors"
+version = "0.1.0"
+edition = "2021"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[workspace]
+members = [".", "database/entity", "database/migration"]
+
+[workspace.dependencies]
+sea-orm = { version = "^0" }
+
+[dependencies]
+# CLI
+clap = { version = "4.0", features = ["env", "derive"] }
+
+# Logging
+tracing = "0.1"
+tracing-subscriber = "0.3"
+
+# Errors
+anyhow = "1.0"
+thiserror = "1.0"
+
+# Serialization
+serde = { version = "1.0", features = ["derive"] }
+serde_json = "1.0"
+toml = "0.7"
+
+# GitHub
+octocrab = "0.18"
+
+# Async
+tokio = { version = "1.21", features = ["full"] }
+futures = "0.3"
+
+# Web
+hyper = "0.14"
+axum = "0.6"
+tower = { version = "0.4", features = ["limit"] }
+jsonwebtoken = "8.2"
+url = "2.3"
+reqwest = "0.11"
+
+# Cryptography
+sha2 = "0.10"
+hmac = "0.12"
+hex = "0.4"
+secrecy = "0.8"
+base64 = "0.21"
+
+# Database
+sqlx = { version = "0.6", features = [ "runtime-tokio-native-tls" , "sqlite", "postgres" ] }
+sea-orm = { workspace = true }
+
+# Time
+chrono = "0.4"
+
+itertools = "0.10"
+
+# Local
+entity = { path = "database/entity" }
+migration = { path = "database/migration" }
+
+[dev-dependencies]
+insta = "1.26"
+derive_builder = "0.12"
